@@ -1,0 +1,53 @@
+﻿<nav id="navmenu" class="navmenu">
+    <ul>
+        <li><a asp-action="Index" asp-controller="Home" class="active">Home</a></li>
+        @if (User.Identity!.IsAuthenticated)
+        {
+
+            <li class="dropdown">
+                <a href="#"><span>Blog</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                    <li><a asp-action="Index" asp-controller="Blog">View Blog</a></li>
+                    <li><a asp-action="Add" asp-controller="Blog">Add Blog</a></li>
+                    <li><a asp-action="ShowBlogs" asp-controller="Blog">Edit Blog</a></li>
+                    <li><a asp-action="DeleteBlog" asp-controller="Blog" class="text-danger">Delete Blog</a></li>
+                </ul>
+
+            </li>
+            <li class="dropdown">
+                <a href="#"><span>Account</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                    <li class="dropdown">
+                        <a href="#"><span>Profile</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                        <ul>
+                            <li><a asp-action="Index" asp-controller="Account">View Profile</a></li>
+                            <li><a asp-action="Edit" asp-controller="Account">Edit Profile</a></li>
+
+                        </ul>
+                    </li>
+                    <li><a asp-action="Logout" asp-controller="Account" class="text-danger">Logout</a></li>
+                </ul>
+
+            </li>
+            @if (@User.IsInRole("Admin"))
+            {
+                <li class="dropdown">
+                    <a href="#"><span>Application Role</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <ul>
+
+                        <li><a asp-action="Index" asp-controller="Role">Show Roles</a></li>
+                        <li><a asp-action="Add" asp-controller="Role">Add Role</a></li>
+                        <li><a asp-action="AssignRole" asp-controller="Role">Assign Role</a></li>
+
+                    </ul>
+
+                </li>
+            }
+            <li><a asp-action="Index" asp-controller="Contact">Contact</a></li>
+          
+        }
+        <li><a asp-action="Index" asp-controller="About">About</a></li>
+
+    </ul>
+    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+</nav>

@@ -1,0 +1,53 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+            <div class="card shadow-sm border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h3 class="mb-0">An error occurred</h3>
+                </div>
+
+                <div class="card-body">
+
+                    <p class="lead">
+                        We encountered an unexpected issue while processing your request.
+                    </p>
+
+                    <!-- Optional: technical error message -->
+                    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                    {
+                        <div class="alert alert-warning">
+                            <strong>Details:</strong> @Model.ErrorMessage
+                        </div>
+                    }
+
+                    <!-- Request ID -->
+                    @if (!string.IsNullOrEmpty(Model.RequestId))
+                    {
+                        <p>
+                            <strong>Request ID:</strong>
+                            <span>@Model.RequestId</span>
+                        </p>
+                    }
+
+                    <hr />
+
+                    <p>
+                        You may try again or return to the homepage.
+                    </p>
+
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-primary">
+                        Back to Home
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

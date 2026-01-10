@@ -1,0 +1,276 @@
+﻿@model SendMailViewModel
+@{
+    ViewData["Title"] = "Contact Page";
+    User currentUser = Model.User;
+    var email = currentUser != null ? currentUser.Email : string.Empty;
+    var fullName = currentUser != null ? $"{currentUser.FName} {currentUser.LName}" : string.Empty;
+}
+
+<!-- Load jQuery FIRST (BEFORE validation scripts) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Page Title -->
+<div class="page-title light-background">
+    <div class="container">
+        <h1>Contact</h1>
+        <nav class="breadcrumbs">
+            <ol>
+                <li><a href="/">Home</a></li>
+                <li class="current">Contact</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- End Page Title -->
+<!-- Contact Section -->
+<section id="contact" class="contact section">
+    <div class="container" data-aos="fade">
+        <div class="row gy-5 gx-lg-5">
+            <!-- Contact Info -->
+            <div class="col-lg-4">
+                <div class="info">
+                    <h3>Get in touch</h3>
+                    <p>Please feel free to reach out to us with any inquiries or comments.</p>
+
+                    <div class="info-item d-flex">
+                        <i class="bi bi-geo-alt flex-shrink-0"></i>
+                        <div>
+                            <h4>Location:</h4>
+                            <p>A108 Adam Street, New York, NY 535022</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item d-flex">
+                        <i class="bi bi-envelope flex-shrink-0"></i>
+                        <div>
+                            <h4>Email:</h4>
+                            <p>ahmedalibahaa2003@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item d-flex">
+                        <i class="bi bi-phone flex-shrink-0"></i>
+                        <div>
+                            <h4>Call:</h4>
+                            <p>+20 01096158798</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Contact Info -->
+            <!-- Contact Form -->
+            <div class="col-lg-8">
+                <form id="contactForm" asp-action="SendEmail" asp-controller="Contact" method="post">
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <input type="text"  class="form-control" id="name"
+                                   placeholder="Your Name" required value="@fullName">
+
+                        </div>
+                        <div class="col-md-6 form-group mt-3 mt-md-0">
+                            <input type="email"  class="form-control" id="email"
+                                   placeholder="Your Email" required value="@email">
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <input type="text" asp-for="Subject" class="form-control" id="subject"
+                               placeholder="Subject" required>
+                        <span asp-validation-for="Subject" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <textarea asp-for="Body" style="height: 250px;" class="form-control"
+                                  id="message" placeholder="Message" required></textarea>
+                        <span asp-validation-for="Body" class="text-danger"></span>
+                    </div>
+
+                    <br />
+
+                    <div class="text-center">
+                        <button type="submit" id="submitBtn" class="btn btn-success">
+                            <span id="submitText">Send Message</span>
+                            <span id="loadingSpinner" class="spinner-border spinner-border-sm"
+                                  role="status" aria-hidden="true" style="display: none;"></span>
+                        </button>
+                    </div>
+
+                    <div id="messageContainer" class="mt-3"></div>
+                </form>
+            </div>
+            <!-- End Contact Form -->
+        </div>
+    </div>
+</section>
+
+<!-- Scroll Top Button -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+</a>
+
+<!-- Main JS File -->
+<script src="/js/main.js"></script>
+
+<!-- Fix for PureCounter error - add this if missing -->
+<script>
+    // Temporary fix for PureCounter if it's missing
+    if (typeof PureCounter === 'undefined') {
+        var PureCounter = {
+            instance: null,
+            init: function() { console.log('PureCounter placeholder initialized'); }
+        };
+    }
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        console.log("DOM loaded - initializing contact form");
+
+        const contactForm = document.getElementById("contactForm");
+        const submitBtn = document.getElementById("submitBtn");
+        const submitText = document.getElementById("submitText");
+        const loadingSpinner = document.getElementById("loadingSpinner");
+        const messageContainer = document.getElementById("messageContainer");
+
+        if (!contactForm) {
+            console.error("Contact form not found!");
+            return;
+        }
+
+        console.log("Form found, adding submit listener");
+
+        contactForm.addEventListener("submit", async function (event) {
+            event.preventDefault(); // Prevent default form submission
+            console.log("Form submission started");
+
+            // Show loading state
+            submitBtn.disabled = true;
+            submitText.textContent = "Sending...";
+            loadingSpinner.style.display = "inline-block";
+
+            // Clear previous messages
+            messageContainer.innerHTML = "";
+            messageContainer.className = "mt-3";
+
+            try {
+                console.log("Preparing form data...");
+
+                // Get anti-forgery token
+                const token = document.querySelector('input[name="__RequestVerificationToken"]');
+                if (!token) {
+                    console.error("Anti-forgery token not found!");
+                    throw new Error("Security token missing");
+                }
+
+                // Create form data
+                const formData = new FormData();
+                formData.append('Name', document.getElementById('name').value);
+                formData.append('Email', document.getElementById('email').value);
+                formData.append('Subject', document.getElementById('subject').value);
+                formData.append('Body', document.getElementById('message').value);
+                formData.append('__RequestVerificationToken', token.value);
+
+                // Log form data
+                console.log("Form data prepared:");
+                for (let [key, value] of formData.entries()) {
+                    console.log(key + ": " + value);
+                }
+
+                // Send request
+                console.log("Sending request to:", this.action);
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: formData
+                    // Headers are set automatically by FormData
+                });
+
+                console.log("Response status:", response.status, response.statusText);
+
+                if (!response.ok) {
+                    console.error("HTTP error! Status:", response.status);
+
+                    // Try to get error details
+                    let errorMessage = `HTTP error! status: ${response.status}`;
+                    try {
+                        const errorText = await response.text();
+                        console.error("Error response body:", errorText);
+
+                        // Try to parse as JSON
+                        const errorJson = JSON.parse(errorText);
+                        errorMessage = errorJson.message || errorMessage;
+                    } catch (e) {
+                        console.error("Could not parse error response");
+                    }
+
+                    throw new Error(errorMessage);
+                }
+
+                const result = await response.json();
+                console.log("Response JSON:", result);
+
+                if (result.success) {
+                    // Success message
+                    showMessage(result.message || "Message sent successfully!", "alert-success");
+
+                    // Clear form fields (except name and email)
+                    document.getElementById("subject").value = "";
+                    document.getElementById("message").value = "";
+
+                    // Update button text
+                    submitText.textContent = "Send Another Message";
+                } else {
+                    // Error message
+                    showMessage(result.message || "Failed to send message. Please try again.", "alert-danger");
+                }
+            } catch (error) {
+                // Network error
+                console.error("Fetch Error Details:", error);
+                console.error("Error name:", error.name);
+                console.error("Error message:", error.message);
+
+                let errorMsg = error.message;
+                if (errorMsg.includes("400")) {
+                    errorMsg = "Form validation failed. Please check all fields are filled correctly.";
+                } else if (errorMsg.includes("401") || errorMsg.includes("403")) {
+                    errorMsg = "Authentication error. Please log in again.";
+                }
+
+                showMessage(errorMsg, "alert-danger");
+            } finally {
+                // Reset button state
+                submitBtn.disabled = false;
+                loadingSpinner.style.display = "none";
+                if (submitText.textContent === "Sending...") {
+                    submitText.textContent = "Send Message";
+                }
+                console.log("Form submission completed");
+            }
+        });
+
+        function showMessage(text, alertClass) {
+            messageContainer.innerHTML = `
+                <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
+                    ${text}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            `;
+        }
+
+        console.log("Contact form initialized successfully");
+    });
+</script>
+
+@section Scripts {
+    @{
+        // Only include validation scripts if jQuery is loaded
+        if (Context.Items["jQueryLoaded"] == null)
+        {
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            Context.Items["jQueryLoaded"] = true;
+        }
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+    }
+}
