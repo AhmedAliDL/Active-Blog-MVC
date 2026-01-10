@@ -21,6 +21,7 @@ namespace Active_Blog_Service.ViewModels
 
         [CheckImageExtension(errorMessage: "Invalid image file format. Only .jpg, .png, and .jpeg files are allowed.")]
         [CheckImageSize(maxSizeInMB:5, errorMessage: "Image size must not exceed 5 MB")]
+        [UniqueEmail(errorMessage:"This Email Address has been used before.")]
         public IFormFile ImageFile { get; set; }
         [MaxLength(11)]
         [MinLength(11)]
