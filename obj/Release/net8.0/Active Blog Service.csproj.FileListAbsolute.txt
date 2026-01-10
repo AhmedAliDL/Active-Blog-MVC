@@ -244,11 +244,6 @@ D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Release\net8.0\Active Blog
 D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Release\net8.0\Active Blog Service.RazorAssemblyInfo.cs
 D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Release\net8.0\staticwebassets.build.json
 D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Release\net8.0\staticwebassets.development.json
-D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Release\net8.0\staticwebassets\msbuild.Active Blog Service.Microsoft.AspNetCore.StaticWebAssets.props
-D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Release\net8.0\staticwebassets\msbuild.build.Active Blog Service.props
-D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Release\net8.0\staticwebassets\msbuild.buildMultiTargeting.Active Blog Service.props
-D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Release\net8.0\staticwebassets\msbuild.buildTransitive.Active Blog Service.props
-D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Release\net8.0\staticwebassets.pack.json
 D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Release\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Release\net8.0\scopedcss\bundle\Active Blog Service.styles.css
 D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Release\net8.0\scopedcss\projectbundle\Active Blog Service.bundle.scp.css
@@ -258,3 +253,18 @@ D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Release\net8.0\refint\Acti
 D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Release\net8.0\Active Blog Service.pdb
 D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Release\net8.0\Active Blog Service.genruntimeconfig.cache
 D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Release\net8.0\ref\Active Blog Service.dll
+D:\.NetDeveloper\MVC Projects\Active Blog Service\bin\Release\net8.0\libman.json
+D:\.NetDeveloper\MVC Projects\Active Blog Service\bin\Release\net8.0\Active Blog Service.staticwebassets.endpoints.json
+D:\.NetDeveloper\MVC Projects\Active Blog Service\bin\Release\net8.0\BouncyCastle.Cryptography.dll
+D:\.NetDeveloper\MVC Projects\Active Blog Service\bin\Release\net8.0\MailKit.dll
+D:\.NetDeveloper\MVC Projects\Active Blog Service\bin\Release\net8.0\MimeKit.dll
+D:\.NetDeveloper\MVC Projects\Active Blog Service\bin\Release\net8.0\System.Security.Cryptography.Pkcs.dll
+D:\.NetDeveloper\MVC Projects\Active Blog Service\bin\Release\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
+D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Release\net8.0\rpswa.dswa.cache.json
+D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Release\net8.0\Active Blog Service.sourcelink.json
+D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Release\net8.0\rjimswa.dswa.cache.json
+D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Release\net8.0\rjsmrazor.dswa.cache.json
+D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Release\net8.0\rjsmcshtml.dswa.cache.json
+D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Release\net8.0\staticwebassets.build.json.cache
+D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Release\net8.0\staticwebassets.build.endpoints.json
+D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Release\net8.0\staticwebassets.upToDateCheck.txt

@@ -9,5 +9,6 @@ namespace Active_Blog_Service.Services.Contracts
         Task<User> GetUserByEmailAsync(string email);
         Task<User> GetUserByBlogIdAsync(int blogId);
         Task<List<User>> GetAllUsersBlogsAsync();
+        bool CheckFoundOfEmail(string email);
     }
 }

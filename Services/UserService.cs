@@ -1,5 +1,6 @@
 ﻿using Active_Blog_Service.Models;
 using Active_Blog_Service.Services.Contracts;
+using System.Runtime.CompilerServices;
 
 namespace Active_Blog_Service.Services
 {
@@ -30,6 +31,13 @@ namespace Active_Blog_Service.Services
         public async Task<List<User>> GetAllUsersBlogsAsync()
         {
             return await _applicationUserRepository.GetAllUsersBlogsAsync();
+        }
+        public bool CheckFoundOfEmail(string email)
+        {
+            var user = _applicationUserRepository.GetUserByEmail(email);
+            if (user != null)
+                return true;
+            return false;
         }
     }
 }

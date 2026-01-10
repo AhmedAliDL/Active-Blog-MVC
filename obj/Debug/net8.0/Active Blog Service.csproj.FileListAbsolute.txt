@@ -795,4 +795,5 @@ D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Debug\net8.0\rjsmrazor.dsw
 D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
 D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Debug\net8.0\staticwebassets.build.json.cache
 D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Debug\net8.0\Active Blog Service.sourcelink.json
 D:\.NetDeveloper\MVC Projects\Active Blog Service\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
