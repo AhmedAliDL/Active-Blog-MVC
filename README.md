@@ -35,7 +35,7 @@ This project is designed with clean architecture principles and supports scalabl
 
 ## Technology Stack
 
-* **ASP.NET MVC 5**
+* **ASP.NET MVC**
 * **Entity Framework Code First**
 * **SQL Server**
 * **ASP.NET Identity**
