@@ -14,6 +14,7 @@ namespace Active_Blog_Service.ViewModels
         public string? LName { get; set; }
         [RegularExpression(@"^[^\s@]+@[^\s@]+\.[cC][oO][mM]$",ErrorMessage ="Email must end with .com")]
         [DataType(DataType.EmailAddress)]
+		[UniqueEmail(errorMessage:"This Email Address has been used before.")]
         public string? Email { get; set; }
 
         [CheckImageExtension(errorMessage: "Invalid image file format. Only .jpg, .png, and .jpeg files are allowed.")]
