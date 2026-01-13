@@ -14,7 +14,7 @@ namespace Active_Blog_Service.Models
         public string? Image {  get; set;}
         public string Address { get; set; }
 
-        public virtual ICollection<Blog> Blogs { get; set;}
-        public virtual ICollection<Comment> Comments { get; set;}
+        public virtual ICollection<Blog>? Blogs { get; set;}
+        public virtual ICollection<Comment>? Comments { get; set;}
     }
 }
